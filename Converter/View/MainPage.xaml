@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Converter.ViewModels"
+             x:Class="Converter.MainPage"
+             BackgroundColor="CadetBlue">
+
+    <!-- Set the BindingContext to the TemperatureViewModel for data binding -->
+    <ContentPage.BindingContext>
+        <viewModels:TemperatureViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Main container for the page content with padding and spacing -->
+    <StackLayout Padding="20" Spacing="15">
+        <!-- Title of the page -->
+        <Label Text="Temperature Converter"
+               FontSize="24"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <!-- Input field for the user to enter a temperature -->
+        <Entry Placeholder="Enter temperature"
+               Text="{Binding InputTemperature}"
+               Keyboard="Numeric"
+               FontSize="18" />
+
+        <!-- Dropdown menu for selecting the source temperature unit -->
+        <Picker Title="Select source unit"
+                SelectedItem="{Binding SelectedSourceUnit}"
+                ItemsSource="{Binding TemperatureUnits}" />
+
+        <!-- Dropdown menu for selecting the target temperature unit -->
+        <Picker Title="Select target unit"
+                SelectedItem="{Binding SelectedTargetUnit}"
+                ItemsSource="{Binding TemperatureUnits}" />
+
+        <!-- Button to trigger the temperature conversion -->
+        <Button Text="Convert"
+                Command="{Binding ConvertCommand}"
+                BackgroundColor="Green"
+                TextColor="White"
+                FontSize="18" />
+
+        <!-- Label to display the conversion result -->
+        <Label Text="{Binding Result}"
+               FontSize="18"
+               TextColor="Black"
+               HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>
